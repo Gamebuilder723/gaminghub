@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gangster Games</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .games-container { display: flex; flex-wrap: wrap; justify-content: center; }
+        .game { margin: 10px; padding: 10px; border: 1px solid #000; width: 150px; }
+        .paid-game { background-color: #ddd; cursor: not-allowed; }
+        button { padding: 10px; margin: 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Gangster Games</h1>
+    
+    <h2>Free Games</h2>
+    <div class="games-container" id="free-games"></div>
+    
+    <h2>Paid Games (Unlock with $2 Subscription)</h2>
+    <button onclick="subscribe()">Subscribe for $2</button>
+    <div class="games-container" id="paid-games"></div>
+    
+    <script>
+        const freeGames = [
+            "Tic Tac Toe", "Snake Game", "Flappy Bird", "Pac-Man", "Space Invaders", "Minesweeper", "Tetris", "Pong", "Breakout", "Sudoku", 
+            "Chess", "Checkers", "Solitaire", "2048", "Bubble Shooter", "Fruit Ninja", "Candy Crush Clone", "Temple Run Clone", "Angry Birds Clone", "Jetpack Joyride Clone", 
+            "Doodle Jump", "Pinball", "Super Mario Clone", "Zelda Clone", "Sonic Clone", "Pac-Man 2", "Battle City", "Tower Defense", "Zombie Shooter", "Racing Game", 
+            "Car Parking", "Crossy Road", "Frogger", "Helix Jump Clone", "Stack Ball Clone", "Endless Runner", "Platformer Game", "Match-3 Game", "Memory Puzzle", "Word Search", 
+            "Connect 4", "Tic Tac Toe 3D", "Chess 3D", "Tetris Battle", "Online Multiplayer Chess", "Ludo", "Monopoly Clone", "Trivia Game", "Quiz Game", "Hidden Objects Game", 
+            "Adventure Island Clone", "BMX Rider", "Bike Stunt", "Archery Game", "Bowling Game", "Golf Game", "Tennis Game", "Football Game", "Basketball Game", "Baseball Game", 
+            "Boxing Game", "Fencing Game", "Wrestling Game", "Fishing Game", "Hunting Game", "Horse Racing", "Roller Coaster Tycoon Clone", "City Builder Game", "Farmville Clone", "Cooking Game", 
+            "Restaurant Simulator", "Flight Simulator", "Train Simulator", "Truck Simulator", "Bus Simulator", "Taxi Simulator", "Police Chase Game", "Bank Robbery Game", "Detective Game", "Mystery Solver", 
+            "Escape Room", "Maze Runner", "Horror Escape", "Haunted House Adventure", "Zombie Apocalypse", "Alien Shooter", "Galaxy War", "Space Exploration", "Asteroid Blaster", "VR Shooter Clone"
+        ];
+        
+        const paidGames = ["GTA 5", "Minecraft", "Cyberpunk 2077", "Red Dead Redemption 2", "Call of Duty Warzone", "FIFA 24", "NBA 2K24", "The Witcher 3", "Elden Ring", "God of War"];
+        let isSubscribed = false;
+
+        function loadGames() {
+            let freeContainer = document.getElementById("free-games");
+            let paidContainer = document.getElementById("paid-games");
+            
+            freeGames.forEach(game => {
+                let div = document.createElement("div");
+                div.classList.add("game");
+                div.innerText = game;
+                freeContainer.appendChild(div);
+            });
+            
+            paidGames.forEach(game => {
+                let div = document.createElement("div");
+                div.classList.add("game", "paid-game");
+                div.innerText = game;
+                if (!isSubscribed) {
+                    div.innerHTML += " (Locked)";
+                }
+                paidContainer.appendChild(div);
+            });
+        }
+
+        function subscribe() {
+            alert("Send $2 to EasyPaisa 03320289308 to unlock paid games.");
+            isSubscribed = true;
+            document.getElementById("paid-games").innerHTML = "";
+            paidGames.forEach(game => {
+                let div = document.createElement("div");
+                div.classList.add("game");
+                div.innerText = game;
+                document.getElementById("paid-games").appendChild(div);
+            });
+        }
+
+        loadGames();
+    </script>
+</body>
+</html>
